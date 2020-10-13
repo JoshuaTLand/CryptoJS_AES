@@ -17,25 +17,25 @@
 		
 		function decryptSubmit(){
 			
-			var encryptionKey = document.getElementById("encryptionKey").value;
-			var encryptedPassword = document.getElementById("decryptValue").value;
+			var cryptionKey = document.getElementById("encryptionKey").value;
+			var cryptVal = document.getElementById("cryptValue").value;
 			
-			document.getElementById("encryptedOutput").innerHTML = encryptedPassword;
+			var decryptedData = CryptoJS.AES.decrypt(cryptVal, cryptionKey).toString(CryptoJS.enc.Utf8)
 			
-			var decryptedData = CryptoJS.AES.decrypt(encryptedPassword, encryptionKey).toString(CryptoJS.enc.Utf8)
+			document.getElementById("encryptedOutput").innerHTML = cryptVal;
 			document.getElementById("decryptedOutput").innerHTML = decryptedData;
 			
 		}
 		
 		function encryptSubmit(){
 			
-			var encryptionKey = document.getElementById("encryptionKey").value;
-			var encryptData = document.getElementById("decryptValue").value;
+			var cryptionKey = document.getElementById("encryptionKey").value;
+			var cryptData = document.getElementById("cryptValue").value;
 			
-			document.getElementById("decryptedOutput").innerHTML = encryptData;
+			var encryptedData = CryptoJS.AES.encrypt(cryptData, cryptionKey)
 			
-			var decryptedData = CryptoJS.AES.encrypt(encryptData, encryptionKey)
-			document.getElementById("decryptedOutput").innerHTML = decryptedData;
+			document.getElementById("encryptedOutput").innerHTML = encryptedData;
+			document.getElementById("decryptedOutput").innerHTML = cryptData;
 			
 		}
 		
@@ -72,7 +72,7 @@
 						<h4>
 							Enter Value
 						</h4>
-						<input id="decryptValue" placeholder="Value" class="input" />
+						<input id="cryptValue" placeholder="Value" class="input" />
 						<br />
 						<br />
 						<input id="encryptButton" value="Encrypt" type="button" class="btn btn-secondary" />
